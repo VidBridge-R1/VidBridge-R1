@@ -54,5 +54,10 @@ We sincerely appreciate the contributions of the open-source community. Our proj
 If you find our work helpful for your research, please consider citing our work.   
 
 ```
-TODO
+@article{chen2025versavid,
+  title={VersaVid-R1: A Versatile Video Understanding and Reasoning Model from Question Answering to Captioning Tasks},
+  author={Chen, Xinlong and Zhang, Yuanxing and Guan, Yushuo and Zeng, Bohan and Shi, Yang and Yang, Sihan and Wan, Pengfei and Liu, Qiang and Wang, Liang and Tan, Tieniu},
+  journal={arXiv preprint arXiv:2506.09079},
+  year={2025}
+}
 ```

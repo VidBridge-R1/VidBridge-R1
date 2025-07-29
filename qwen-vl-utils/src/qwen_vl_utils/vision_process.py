@@ -289,7 +289,7 @@ def fetch_video(ele: dict, image_factor: int = IMAGE_FACTOR, return_video_sample
         nframes, _, height, width = video.shape
 
         # NOTE max 16 frames
-        frame_indices = torch.linspace(0, nframes-1, 32).long()
+        frame_indices = torch.linspace(0, nframes-1, 16).long()
 
         video = video[frame_indices]
 

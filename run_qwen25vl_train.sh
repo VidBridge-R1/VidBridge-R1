@@ -9,7 +9,6 @@ mkdir -p $OUT_DIR
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5 torchrun --nproc_per_node="6" \
     --nnodes="1" \
     --node_rank="0" \
-    
     --master_addr="127.0.0.1" \
     --master_port="12353" \
     src/open_r1_video/grpo.py \
