@@ -1,34 +1,31 @@
-# VersaVid-R1: A Versatile Video Understanding and Reasoning Model from Question Answering to Captioning Tasks
+# VidBridge-R1: Bridging QA and Captioning for RL-based Video Understanding Models with Intermediate Proxy Tasks
 
-[[🤗 Model](https://huggingface.co/VersaVid-R1/VersaVid-R1)] [[🤗 Training Data](https://huggingface.co/datasets/VersaVid-R1/VersaVid-R1_training_data)]
+[[🤗 Model](https://huggingface.co/VidBridge-R1/VidBridge-R1)] [[🤗 Training Data](https://huggingface.co/datasets/VidBridge-R1/VidBridge-R1_training_data)]
 
 ## 👀 Overview
-Recent advancements in MLLMs have successfully extended the *Reason-Then-Respond* paradigm to image-based reasoning, yet video-based reasoning remains an underdeveloped frontier, primarily due to the scarcity of high-quality reasoning-oriented data and effective training methodologies. 
+The "Reason-Then-Respond" paradigm, enhanced by Reinforcement Learning, has shown great promise in advancing MLLMs. However, its application to the video domain has led to specialized models that excel at either question answering (QA) or captioning tasks, but struggle to master both. Naively combining reward signals from these tasks results in mutual performance degradation, which we attribute to a conflict between their opposing task natures. To address this challenge, we propose a novel training framework built upon two intermediate proxy tasks: 
 
-To bridge this gap, we introduce **DarkEventInfer** and **MixVidQA**, two novel datasets specifically designed to stimulate the model's advanced video understanding and reasoning abilities. 
-
-- DarkEventinfer presents videos with masked event segments, requiring models to infer the obscured content based on contextual video cues.
-- MixVidQA presents interleaved video sequences composed of two distinct clips, challenging models to isolate and reason about one while disregarding the other. 
+- DarkEventInfer, which presents videos with masked event segments, requiring models to infer the obscured content based on contextual video cues;
+- MixVidQA, which presents interleaved video sequences composed of two distinct clips, challenging models to isolate and reason about one while disregarding the other.
 
 <img src="./assets/main.jpg"/>
 
-Leveraging these carefully curated training samples together with reinforcement learning guided by diverse reward functions, we develop **VersaVid-R1**, the first versatile video understanding and reasoning model under the *Reason-Then-Respond* paradigm capable of handling general video understanding, video complex reasoning, and video captioning tasks.
-
+These proxy tasks compel the model to simultaneously develop both holistic, divergent understanding and precise, convergent reasoning capabilities. Embodying this framework, we present VidBridge-R1, the first versatile video reasoning model that effectively bridges the paradigm conflict. Extensive experiments show that VidBridge-R1 achieves significant performance gains on both QA and captioning within one model, demonstrating the efficacy of our approach in fostering more generalizable and powerful video understanding models.
 
 ## 🔧 Set up
 To get started, follow the steps below:
 ```bash
-git clone https://github.com/VersaVid-R1/VersaVid-R1.git
-cd VersaVid-R1
-conda create -n VersaVid-R1 python=3.10
-conda activate VersaVid-R1
+git clone https://github.com/VidBridge-R1/VidBridge-R1.git
+cd VidBridge-R1
+conda create -n VidBridge-R1 python=3.10
+conda activate VidBridge-R1
 pip3 install -e ".[dev]"
 pip3 install flash_attn --no-build-isolation
 cd qwen-vl-utils
 pip install -e .
 cd ..
 ```
-Note: After downloading the training data, please update the root directory path in ``VersaVid-R1_training_data.jsonl`` and ``run_qwen25vl_train.sh``.
+Note: After downloading the training data, please update the root directory path in ``VidBridge-R1_training_data.jsonl`` and ``run_qwen25vl_train.sh``.
 
 ## 🚀 Training
 > **Hardware Note:** Our training was conducted on a system with 8 × A800 (80GB) GPUs. For different hardware configurations, please adjust the corresponding settings accordingly—such as the deployment of judge models in ``src/qwen25_judge_service.py`` and GPU device configurations in ``run_qwen25vl_train.sh``.
